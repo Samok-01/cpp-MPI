@@ -1,0 +1,140 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "MPI: Build active file",
+            "command": "C:\\msys64\\ucrt64\\bin\\mpic++.exe",
+            "args": [
+                "-fopenmp",
+                "-g",
+                "${file}",
+                "-o",
+                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "env": {
+                    "PATH": "C:\\msys64\\ucrt64\\bin;C:\\Program Files\\Microsoft MPI\\Bin;${env:PATH}"
+                }
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "Компилирует текущий открытый файл через mpic++ (Ctrl+Shift+B)"
+        },
+        {
+            "type": "shell",
+            "label": "MPI: Run active file (4 processes)",
+            "command": "\"C:\\Program Files\\Microsoft MPI\\Bin\\mpiexec.exe\"",
+            "args": [
+                "-n",
+                "4",
+                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "env": {
+                    "PATH": "C:\\msys64\\ucrt64\\bin;C:\\Program Files\\Microsoft MPI\\Bin;${env:PATH}"
+                }
+            },
+            "problemMatcher": [],
+            "dependsOn": "MPI: Build active file",
+            "detail": "Компилирует и запускает текущий открытый файл на 4 процессах"
+        },
+        {
+            "type": "shell",
+            "label": "Run Task 26 (3 processes)",
+            "command": "cmd /c \"C:\\msys64\\ucrt64\\bin\\mpic++.exe task26.cpp -o task26.exe && \\\"C:\\Program Files\\Microsoft MPI\\Bin\\mpiexec.exe\\\" -n 3 task26.exe A\"",
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "env": {
+                    "PATH": "C:\\msys64\\ucrt64\\bin;C:\\Program Files\\Microsoft MPI\\Bin;${env:PATH}"
+                }
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "detail": "Запуск Задания 26: Группы и коммуникаторы (3 процесса)"
+        },
+        {
+            "type": "shell",
+            "label": "Run Task 27 (2 processes)",
+            "command": "cmd /c \"C:\\msys64\\ucrt64\\bin\\mpic++.exe task27.cpp -o task27.exe && \\\"C:\\Program Files\\Microsoft MPI\\Bin\\mpiexec.exe\\\" -n 2 task27.exe 3\"",
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "env": {
+                    "PATH": "C:\\msys64\\ucrt64\\bin;C:\\Program Files\\Microsoft MPI\\Bin;${env:PATH}"
+                }
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "detail": "Запуск Задания 27: MPI_Comm_spawn (2 процесса)"
+        },
+        {
+            "type": "shell",
+            "label": "Run Task 28 (4 processes)",
+            "command": "cmd /c \"C:\\msys64\\ucrt64\\bin\\mpic++.exe task28.cpp -o task28.exe && \\\"C:\\Program Files\\Microsoft MPI\\Bin\\mpiexec.exe\\\" -n 4 task28.exe 1000000000\"",
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "env": {
+                    "PATH": "C:\\msys64\\ucrt64\\bin;C:\\Program Files\\Microsoft MPI\\Bin;${env:PATH}"
+                }
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "detail": "Запуск Задания 28: Односторонние коммуникации RMA (4 процесса)"
+        },
+        {
+            "type": "shell",
+            "label": "Run Task 29 (4 processes)",
+            "command": "cmd /c \"C:\\msys64\\ucrt64\\bin\\mpic++.exe task29.cpp -o task29.exe && \\\"C:\\Program Files\\Microsoft MPI\\Bin\\mpiexec.exe\\\" -n 4 task29.exe 10000000\"",
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "env": {
+                    "PATH": "C:\\msys64\\ucrt64\\bin;C:\\Program Files\\Microsoft MPI\\Bin;${env:PATH}"
+                }
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "detail": "Запуск Задания 29: Замер масштабируемости (4 процесса)"
+        },
+        {
+            "type": "shell",
+            "label": "Run Task 30 (2 processes)",
+            "command": "cmd /c \"C:\\msys64\\ucrt64\\bin\\mpic++.exe -fopenmp task30.cpp -o task30.exe && \\\"C:\\Program Files\\Microsoft MPI\\Bin\\mpiexec.exe\\\" -n 2 task30.exe\"",
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "env": {
+                    "PATH": "C:\\msys64\\ucrt64\\bin;C:\\Program Files\\Microsoft MPI\\Bin;${env:PATH}"
+                }
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "detail": "Запуск Задания 30: MPI + OpenMP (2 процесса)"
+        },
+        {
+            "type": "shell",
+            "label": "Run Task 31 (2 processes)",
+            "command": "cmd /c \"C:\\msys64\\ucrt64\\bin\\mpic++.exe -fopenmp task31.cpp -o task31.exe && \\\"C:\\Program Files\\Microsoft MPI\\Bin\\mpiexec.exe\\\" -n 2 task31.exe 3\"",
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "env": {
+                    "PATH": "C:\\msys64\\ucrt64\\bin;C:\\Program Files\\Microsoft MPI\\Bin;${env:PATH}"
+                }
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "detail": "Запуск Задания 31: MPI + OpenMP «I am» (2 процесса, 3 нити)"
+        }
+    ]
+}
